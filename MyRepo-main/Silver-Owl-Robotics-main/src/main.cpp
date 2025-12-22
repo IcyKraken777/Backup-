@@ -245,7 +245,7 @@ if(AutoSelectorVal==1)//9ball LEFT
 if(AutoSelectorVal==2) // If Time 6+3
 {
   Lift.set(false);
-  extra();
+  nineright();
 }
 
 if(AutoSelectorVal==3)//Unimportant
@@ -277,7 +277,7 @@ if(AutoSelectorVal==6)//AWP only
 if(AutoSelectorVal==7)//Skills
 { 
 Scrapper.set(false);
- //testskills();
+ testskills();
 
 }
 
@@ -323,28 +323,33 @@ int ATask(void)
     if (Controller1.ButtonR1.pressing()==1)
     {
       IntakeBoth(100);
+      Hood.set(true);
     
     }
     
     else if (Controller1.ButtonL1.pressing()==1)
     {
       IntakeBoth(-100);
+      Hood.set(false);
     }
     else if (Controller1.ButtonR2.pressing()==1)
     {
       RunBottom(100);
-      RunSecondStage(-35);
+      RunSecondStage(-70);
+      Hood.set(false);
 
     }
     else if (Controller1.ButtonA.pressing()==1)
     {
-      RunBottom(100);
+      RunBottom(55);
       RunSecondStage(25);
+      Hood.set(false);
 
     }
     else
     {
        IntakeBoth(0);
+       Hood.set(false);
 
     }
     if(Controller1.ButtonL2.pressing()==1){
@@ -531,7 +536,6 @@ int main() {
   // Prevent main from exiting with an infinite loop.
   while (true) {
     wait(100, msec);
-    ShowDis();
   }
 }
   
