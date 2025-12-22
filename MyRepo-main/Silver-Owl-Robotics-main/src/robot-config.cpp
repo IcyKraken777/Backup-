@@ -16,11 +16,12 @@ motor RM = motor(PORT2, ratio6_1, false);
 motor LB = motor(PORT7, ratio6_1, true);
 motor RB = motor(PORT8, ratio6_1, false);
 //motor Intake = motor(PORT9, ratio6_1, false);
-motor SecondStage = motor(PORT16, ratio6_1, false);
-motor BottomStage = motor(PORT17, ratio6_1, true);
-digital_out Wings = digital_out(Brain.ThreeWirePort.E);
+motor SecondStage = motor(PORT15, ratio6_1, false);
+motor BottomStage = motor(PORT20, ratio6_1, true);
+digital_out Wings = digital_out(Brain.ThreeWirePort.D);
 digital_out Scrapper = digital_out(Brain.ThreeWirePort.H);
 digital_out Lift = digital_out(Brain.ThreeWirePort.F);
+digital_out Hood = digital_out(Brain.ThreeWirePort.E);
 inertial Gyro = inertial(PORT10);
 //Naming convention: 
 // Important variables
