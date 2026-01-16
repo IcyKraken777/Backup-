@@ -37,7 +37,7 @@ bool SP;
 bool EXIT;
 void pre_auton(void) {
    EXIT=false;
-  Scrapper.set(true);
+  Scrapper.set(false);
   //Lift.set(false);
   Wings.set(true);
   Hood.set(true);
@@ -101,7 +101,7 @@ SP=Brain.Screen.pressing();
 
 Brain.Screen.clearScreen();
 if(AutoSelectorVal==1){
-  Lift.set(false);
+  Lift.set(true);
   Brain.Screen.setFillColor(black);
 Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
@@ -244,7 +244,7 @@ if(AutoSelectorVal==1)//9ball LEFT
 
 if(AutoSelectorVal==2) // If Time 6+3
 {
-  Lift.set(true);
+  Lift.set(false);
   extra();
 }
 
@@ -276,7 +276,7 @@ if(AutoSelectorVal==6)//AWP only
 
 if(AutoSelectorVal==7)//Skills
 { 
-Scrapper.set(true);
+Scrapper.set(false);
  //testskills();
 
 }
@@ -335,13 +335,14 @@ int ATask(void)
       RunSecondStage(30);
 
     }
-    else if (Controller1.ButtonA.pressing()==1)
+    else if (Controller1.ButtonB.pressing()==1)
     {
-      if (counter < 36000){
+      if (counter < 27000){
         IntakeBoth(-50);
         counter++;
-      } else {
         Lift.set(false);
+      } else {
+        Lift.set(true);
         RunBottom(100);
         RunSecondStage(-25);
       }
@@ -351,23 +352,23 @@ int ATask(void)
        IntakeBoth(0);
     }
     if(Controller1.ButtonL2.pressing()==1){
-      Wings.set(true);
+      Wings.set(false);
 
 
     }
     else
     {
-       Wings.set(false);
-
+       Wings.set(true);
     }
-    if (!Controller1.ButtonA.pressing() == 1){
+    if (!Controller1.ButtonB.pressing() == 1){
       counter = 0;
+      Lift.set(false);
     }
     if (Controller1.ButtonR1.pressing()==1)
     {
-      Hood.set(false);
-    } else {
       Hood.set(true);
+    } else {
+      Hood.set(false);
     }
   
   //RunPuncher((Controller1.ButtonB.pressing())*100);
@@ -407,7 +408,7 @@ int PTask(void)
     {
       ButtonPressingY=1;
       YTaskActiv=1;
-      Scrapper.set(false);
+      Scrapper.set(true);
     }
 
     else if(!Controller1.ButtonDown.pressing())ButtonPressingY=0;
@@ -416,16 +417,16 @@ int PTask(void)
     {
       ButtonPressingY=1;
       YTaskActiv=0;
-      Scrapper.set(true);
+      Scrapper.set(false);
     }
     
       
     //
     if(RightTaskActiv==0&&Controller1.ButtonB.pressing()&&ButtonPressingRight==0)
     {
-      ButtonPressingRight=1;
-      RightTaskActiv=1;
-      Lift.set(true);
+      //ButtonPressingRight=1;
+      //RightTaskActiv=1;
+      //Lift.set(true);
     }
 
     else if(!Controller1.ButtonB.pressing())ButtonPressingRight=0;
@@ -434,7 +435,7 @@ int PTask(void)
     {
       ButtonPressingRight=1;
       RightTaskActiv=0;
-      Lift.set(false);
+      Lift.set(true);
     }
     //TOGGLES BOTH ENCASE NEEDED
     //if (R2TaskActiv==1&&RTaskActiv==1)
