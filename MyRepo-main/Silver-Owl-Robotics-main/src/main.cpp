@@ -323,9 +323,7 @@ int ATask(void)
     if (Controller1.ButtonR1.pressing()==1)
     {
       IntakeBoth(100);
-    
     }
-    
     else if (Controller1.ButtonL1.pressing()==1)
     {
       IntakeBoth(-100);
@@ -333,19 +331,18 @@ int ATask(void)
     else if (Controller1.ButtonR2.pressing()==1)
     {
       RunBottom(100);
-      RunSecondStage(-35);
+      RunSecondStage(30);
 
     }
     else if (Controller1.ButtonA.pressing()==1)
     {
       RunBottom(100);
-      RunSecondStage(25);
+      RunSecondStage(-25);
 
     }
     else
     {
        IntakeBoth(0);
-
     }
     if(Controller1.ButtonL2.pressing()==1){
       Wings.set(false);
@@ -358,7 +355,12 @@ int ATask(void)
 
     }
 
-    
+    if (Controller1.ButtonR1.pressing()==1)
+    {
+      Hood.set(true);
+    } else {
+      Hood.set(false);
+    }
   
   //RunPuncher((Controller1.ButtonB.pressing())*100);
   }

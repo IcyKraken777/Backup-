@@ -20,6 +20,7 @@ extern digital_out Wings;
 extern motor PU;
 extern inertial Gyro;
 extern digital_out LeftBackWing;
+extern digital_out Hood;
 
 extern const double wheelDiam;
 extern const double wheelToMotorRatio;
