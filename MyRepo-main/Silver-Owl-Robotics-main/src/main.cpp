@@ -37,9 +37,10 @@ bool SP;
 bool EXIT;
 void pre_auton(void) {
    EXIT=false;
-  Scrapper.set(false);
+  Scrapper.set(true);
   //Lift.set(false);
-  Wings.set(false);
+  Wings.set(true);
+  Hood.set(true);
   PX=0;
   JX=0;
   AutoSelectorVal=0;
@@ -62,7 +63,6 @@ Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
 Brain.Screen.setCursor(2,10);
 Brain.Screen.print("FLIR TIMEOUT");
-
 
 waitUntil(!Gyro.isCalibrating());
 
@@ -101,7 +101,7 @@ SP=Brain.Screen.pressing();
 
 Brain.Screen.clearScreen();
 if(AutoSelectorVal==1){
-  Lift.set(true);
+  Lift.set(false);
   Brain.Screen.setFillColor(black);
 Brain.Screen.setFont(monoXL);
 Brain.Screen.setPenColor("#39FF14");
@@ -244,7 +244,7 @@ if(AutoSelectorVal==1)//9ball LEFT
 
 if(AutoSelectorVal==2) // If Time 6+3
 {
-  Lift.set(false);
+  Lift.set(true);
   extra();
 }
 
@@ -276,7 +276,7 @@ if(AutoSelectorVal==6)//AWP only
 
 if(AutoSelectorVal==7)//Skills
 { 
-Scrapper.set(false);
+Scrapper.set(true);
  //testskills();
 
 }
@@ -313,6 +313,7 @@ int V;
 int ButtonPressingR,RTaskActiv;
 int ButtonPressingR2,R2TaskActiv;
 int pow2 = 100;
+int counter;
 int ATask(void)
 {
   
@@ -336,30 +337,37 @@ int ATask(void)
     }
     else if (Controller1.ButtonA.pressing()==1)
     {
-      RunBottom(100);
-      RunSecondStage(-25);
-
-    }
+      if (counter < 36000){
+        IntakeBoth(-50);
+        counter++;
+      } else {
+        Lift.set(false);
+        RunBottom(100);
+        RunSecondStage(-25);
+      }
+    } 
     else
     {
        IntakeBoth(0);
     }
     if(Controller1.ButtonL2.pressing()==1){
-      Wings.set(false);
+      Wings.set(true);
 
 
     }
     else
     {
-       Wings.set(true);
+       Wings.set(false);
 
     }
-
+    if (!Controller1.ButtonA.pressing() == 1){
+      counter = 0;
+    }
     if (Controller1.ButtonR1.pressing()==1)
     {
-      Hood.set(true);
-    } else {
       Hood.set(false);
+    } else {
+      Hood.set(true);
     }
   
   //RunPuncher((Controller1.ButtonB.pressing())*100);
@@ -399,7 +407,7 @@ int PTask(void)
     {
       ButtonPressingY=1;
       YTaskActiv=1;
-      Scrapper.set(true);
+      Scrapper.set(false);
     }
 
     else if(!Controller1.ButtonDown.pressing())ButtonPressingY=0;
@@ -408,7 +416,7 @@ int PTask(void)
     {
       ButtonPressingY=1;
       YTaskActiv=0;
-      Scrapper.set(false);
+      Scrapper.set(true);
     }
     
       
