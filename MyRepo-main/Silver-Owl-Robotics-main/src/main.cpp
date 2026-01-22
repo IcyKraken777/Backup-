@@ -20,7 +20,6 @@ using namespace vex;
 // A global instance of competition
 competition Competition;
 
-
 // define your global instances of motors and other devices here
 
 /*---------------------------------------------------------------------------*/
@@ -38,16 +37,16 @@ bool EXIT;
 void pre_auton(void) {
    EXIT=false;
   Scrapper.set(false);
-  //Lift.set(false);
-  Wings.set(true);
-  Hood.set(true);
+  Lift.set(false);
+  Wings.set(false);
+  Hood.set(false);
   PX=0;
   JX=0;
   AutoSelectorVal=0;
   SP=false;
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-Gyro.calibrate();
+ Gyro.calibrate();
 
 //Ensure Robot Launch Position is set before auto proceeds, once plugged into field control,
 //start program and do not temper bot under all circumstances
@@ -250,7 +249,7 @@ if(AutoSelectorVal==2) // If Time 6+3
 
 if(AutoSelectorVal==3)//Unimportant
 {
-  //test4();
+  test4();
 } 
 
 if(AutoSelectorVal==4)//9ball RIGHT
@@ -302,8 +301,8 @@ int DriveTask(void){
   {
   
     EXIT=true;
-    RV=Controller1.Axis3.position(percent)-0.8*(Controller1.Axis1.position(percent));
-    LV=Controller1.Axis3.position(percent)+0.8*(Controller1.Axis1.position(percent));
+    RV=Controller1.Axis3.position(percent)-1*(Controller1.Axis1.position(percent));
+    LV=Controller1.Axis3.position(percent)+1*(Controller1.Axis1.position(percent));
     Move(LV,RV);
   }
 
@@ -327,12 +326,13 @@ int ATask(void)
     }
     else if (Controller1.ButtonL1.pressing()==1)
     {
-      IntakeBoth(-100);
+      IntakeBoth(-50);
+      
     }
     else if (Controller1.ButtonR2.pressing()==1)
     {
       RunBottom(100);
-      RunSecondStage(30);
+      
 
     }
     else if (Controller1.ButtonB.pressing()==1)
