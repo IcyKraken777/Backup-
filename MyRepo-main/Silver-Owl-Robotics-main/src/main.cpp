@@ -337,13 +337,14 @@ int ATask(void)
     }
     else if (Controller1.ButtonB.pressing()==1)
     {
-      if (counter < 27000){
-        IntakeBoth(-50);
+if (counter < 27000){
+        RunBottom(-50);
+        RunSecondStage(-100);
         counter++;
         Lift.set(false);
       } else {
         Lift.set(true);
-        RunBottom(100);
+        RunBottom(80);
         RunSecondStage(-25);
       }
     } 
